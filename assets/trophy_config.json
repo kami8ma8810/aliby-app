@@ -1,0 +1,84 @@
+{
+  "trophies": [
+    {
+      "id": "first_100_days",
+      "name": "100日記念",
+      "description": "生まれてから100日が経ちました！",
+      "condition": {
+        "type": "days",
+        "value": 100
+      },
+      "icon": "🎉"
+    },
+    {
+      "id": "first_year",
+      "name": "1歳の誕生日",
+      "description": "記念すべき1歳の誕生日です！",
+      "condition": {
+        "type": "years",
+        "value": 1
+      },
+      "icon": "🎂"
+    },
+    {
+      "id": "days_1000",
+      "name": "1000日達成",
+      "description": "生まれてから1000日が経ちました！",
+      "condition": {
+        "type": "days",
+        "value": 1000
+      },
+      "icon": "🏆"
+    },
+    {
+      "id": "days_5000",
+      "name": "5000日達成",
+      "description": "生まれてから5000日が経ちました！",
+      "condition": {
+        "type": "days",
+        "value": 5000
+      },
+      "icon": "🌟"
+    },
+    {
+      "id": "days_10000",
+      "name": "10000日達成",
+      "description": "生まれてから10000日が経ちました！",
+      "condition": {
+        "type": "days",
+        "value": 10000
+      },
+      "icon": "💎"
+    },
+    {
+      "id": "repdigit_1111",
+      "name": "ゾロ目記念日",
+      "description": "1111日目です！",
+      "condition": {
+        "type": "specific_days",
+        "value": 1111
+      },
+      "icon": "1️⃣"
+    },
+    {
+      "id": "repdigit_2222",
+      "name": "ゾロ目記念日",
+      "description": "2222日目です！",
+      "condition": {
+        "type": "specific_days",
+        "value": 2222
+      },
+      "icon": "2️⃣"
+    },
+    {
+      "id": "repdigit_3333",
+      "name": "ゾロ目記念日",
+      "description": "3333日目です！",
+      "condition": {
+        "type": "specific_days",
+        "value": 3333
+      },
+      "icon": "3️⃣"
+    }
+  ]
+}
