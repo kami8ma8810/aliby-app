@@ -17,7 +17,7 @@ class StorageService {
   /// ユーザーデータを保存する
   /// 
   /// asyncキーワード：非同期関数を定義
-  /// Future<bool>：非同期で真偽値を返すことを示す
+  /// `Future<bool>`：非同期で真偽値を返すことを示す
   /// https://dart.dev/codelabs/async-await
   Future<bool> saveUserData(UserData userData) async {
     try {
@@ -33,14 +33,14 @@ class StorageService {
       return await prefs.setString(_userDataKey, jsonString);
     } catch (e) {
       // エラーが発生した場合はfalseを返す
-      print('Error saving user data: $e');
+      // TODO: 本番環境ではロギングフレームワークを使用する
       return false;
     }
   }
 
   /// 保存されたユーザーデータを読み込む
   /// 
-  /// Future<UserData?>：UserDataまたはnullを非同期で返す
+  /// `Future<UserData?>`：UserDataまたはnullを非同期で返す
   /// ?はnull許容型を示す（Dartのnull safety機能）
   /// https://dart.dev/null-safety
   Future<UserData?> loadUserData() async {
@@ -59,7 +59,7 @@ class StorageService {
       final jsonData = json.decode(jsonString) as Map<String, dynamic>;
       return UserData.fromJson(jsonData);
     } catch (e) {
-      print('Error loading user data: $e');
+      // TODO: 本番環境ではロギングフレームワークを使用する
       return null;
     }
   }
@@ -76,7 +76,7 @@ class StorageService {
       final prefs = await SharedPreferences.getInstance();
       return await prefs.remove(_userDataKey);
     } catch (e) {
-      print('Error clearing user data: $e');
+      // TODO: 本番環境ではロギングフレームワークを使用する
       return false;
     }
   }

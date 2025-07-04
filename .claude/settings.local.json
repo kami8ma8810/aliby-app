@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(flutter create:*)",
+      "Bash(flutter pub add:*)",
+      "Bash(mkdir:*)",
+      "Bash(flutter test:*)",
+      "mcp__ide__getDiagnostics",
+      "Bash(rm:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
+    ],
+    "deny": []
+  }
+}

@@ -14,7 +14,7 @@ class UserData {
 
   /// オブジェクトをJSON形式に変換するメソッド
   /// SharedPreferencesに保存する際などに使用
-  /// Map<String, dynamic>はDartの辞書型（他言語のHashMapやDictionaryに相当）
+  /// `Map<String, dynamic>`はDartの辞書型（他言語のHashMapやDictionaryに相当）
   /// https://dart.dev/guides/libraries/library-tour#maps
   Map<String, dynamic> toJson() {
     return {
