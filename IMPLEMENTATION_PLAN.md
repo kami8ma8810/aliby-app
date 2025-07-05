@@ -114,7 +114,10 @@ aliby-app/
 - ✅ TDDでStorageServiceの実装完了
 - ✅ READMEにアーキテクチャ図・データフロー図を追加
 - ✅ TDDでTrophyモデルの実装完了
-- 🔄 UserProviderの実装開始
+- ✅ TDDでUserProvider, TimerProviderの実装完了
+- ✅ OnboardingScreen（初回起動画面）の実装完了
+- ✅ main.dartのアプリ全体構造を実装
+- 🔄 HomeScreenの実装開始
 
 ## 🎯 MVP機能チェックリスト
 
