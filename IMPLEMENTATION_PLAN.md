@@ -48,10 +48,11 @@
   - [x] TimerProvider実装
 
 ### Phase 3: UI実装 (4-5日目)
-- [ ] HomeScreenの実装
-  - [ ] 経過日数の大きな表示
-  - [ ] 時間・分・秒の表示
-  - [ ] ナビゲーションボタン
+- [x] HomeScreenの実装
+  - [x] 経過日数の大きな表示
+  - [x] 時間・分・秒の表示
+  - [x] ナビゲーションボタン
+  - [x] レスポンシブ対応（小画面対応）
 - [ ] TrophyHistoryScreenの実装
 - [ ] SettingsScreenの実装
   - [ ] リアルタイム表示ON/OFF
@@ -117,7 +118,8 @@ aliby-app/
 - ✅ TDDでUserProvider, TimerProviderの実装完了
 - ✅ OnboardingScreen（初回起動画面）の実装完了
 - ✅ main.dartのアプリ全体構造を実装
-- 🔄 HomeScreenの実装開始
+- ✅ HomeScreenの実装完了（レスポンシブ対応含む）
+- ✅ READMEを簡潔にし、技術文書を別ファイルに整理
 
 ## 🎯 MVP機能チェックリスト
 
@@ -148,13 +150,13 @@ aliby-app/
 
 ## 📈 実装進捗サマリー
 
-### 全体進捗: ████████████░░░░░░░░ 60%
+### 全体進捗: ██████████████░░░░░░ 70%
 
 | フェーズ | 進捗 | 詳細 |
 |---------|------|------|
 | Phase 1: 基盤構築 | ████████████████████ 100% | ✅ 完了 |
 | Phase 2: コア機能実装 | ████████████████████ 100% | ✅ 完了 |
-| Phase 3: UI実装 | ░░░░░░░░░░░░░░░░░░░░ 0% | 🎯 次の作業 |
+| Phase 3: UI実装 | ████████░░░░░░░░░░░░ 40% | 🔄 進行中 |
 | Phase 4: トロフィー機能 | ░░░░░░░░░░░░░░░░░░░░ 0% | ⏳ 未着手 |
 | Phase 5: 仕上げ | ░░░░░░░░░░░░░░░░░░░░ 0% | ⏳ 未着手 |
 
@@ -162,15 +164,17 @@ aliby-app/
 - ✅ **モデル層**: UserData, Trophy, TrophyCondition, TrophyConfig
 - ✅ **サービス層**: StorageService
 - ✅ **Provider層**: UserProvider, TimerProvider
-- ✅ **ドキュメント**: README（アーキテクチャ図含む）、実装計画書
+- ✅ **画面**: OnboardingScreen, HomeScreen
+- ✅ **ドキュメント**: README, ARCHITECTURE.md, DEVELOPMENT.md, 実装計画書
 
 ### 次の実装予定
-- 🎯 OnboardingScreen（初回起動時の生年月日入力画面）
-- 🎯 HomeScreen（メイン画面）の実装
-- 🎯 ナビゲーション設定
+- 🎯 TrophyHistoryScreen（トロフィー履歴画面）の実装
+- 🎯 SettingsScreen（設定画面）の実装
+- 🎯 トロフィー判定ロジックの実装
 
 ## 🔄 更新履歴
 
 | 日付 | 内容 |
 |------|------|
-| 2025-07-04 | プロジェクト開始、実装計画書作成、モデル層・サービス層の一部実装完了 |
+| 2025-07-04 | プロジェクト開始、実装計画書作成、モデル層・サービス層の実装完了 |
+| 2025-07-05 | OnboardingScreen、HomeScreenの実装完了、ドキュメント整理 |
