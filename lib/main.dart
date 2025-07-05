@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'providers/user_provider.dart';
 import 'providers/timer_provider.dart';
+import 'providers/trophy_provider.dart';
 import 'screens/onboarding_screen.dart';
 import 'screens/home_screen.dart';
 
@@ -29,6 +30,8 @@ class AlibyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => UserProvider()),
         // TimerProviderを提供
         ChangeNotifierProvider(create: (_) => TimerProvider()),
+        // TrophyProviderを提供
+        ChangeNotifierProvider(create: (_) => TrophyProvider()),
       ],
       child: MaterialApp(
         title: 'Aliby',
@@ -114,6 +117,13 @@ class _InitialScreenState extends State<InitialScreen> {
       // タイマーを開始
       final timerProvider = context.read<TimerProvider>();
       timerProvider.startTimer();
+      
+      // トロフィーをチェック
+      final trophyProvider = context.read<TrophyProvider>();
+      trophyProvider.checkAndAddTrophy(
+        userProvider.userData!.birthdate,
+        DateTime.now(),
+      );
       
       return const HomeScreen();
     } else {

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/user_provider.dart';
 import '../providers/timer_provider.dart';
+import 'trophy_history_screen.dart';
 
 /// アプリのメイン画面
 /// 経過時間をリアルタイムで表示し、トロフィー情報も表示する
@@ -209,7 +210,11 @@ class HomeScreen extends StatelessWidget {
           // 履歴ボタン
           IconButton(
             onPressed: () {
-              // TODO: Navigate to TrophyHistoryScreen
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const TrophyHistoryScreen(),
+                ),
+              );
             },
             icon: const Icon(Icons.history),
             iconSize: 32,
