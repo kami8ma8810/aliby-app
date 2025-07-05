@@ -41,11 +41,14 @@ class SettingsScreen extends StatelessWidget {
   Widget _buildSectionHeader(BuildContext context, String title) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
-      child: Text(
-        title,
-        style: Theme.of(context).textTheme.titleMedium?.copyWith(
-          color: Theme.of(context).colorScheme.primary,
-          fontWeight: FontWeight.bold,
+      child: Semantics(
+        header: true,
+        child: Text(
+          title,
+          style: Theme.of(context).textTheme.titleMedium?.copyWith(
+            color: Theme.of(context).colorScheme.primary,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );
@@ -64,11 +67,15 @@ class SettingsScreen extends StatelessWidget {
       subtitle: Text(
         settingsProvider.isDarkMode ? 'ダークテーマを使用中' : 'ライトテーマを使用中',
       ),
-      trailing: Switch(
-        value: settingsProvider.isDarkMode,
-        onChanged: (value) async {
-          await settingsProvider.toggleDarkMode();
-        },
+      trailing: Semantics(
+        toggled: settingsProvider.isDarkMode,
+        label: 'ダークモード',
+        child: Switch(
+          value: settingsProvider.isDarkMode,
+          onChanged: (value) async {
+            await settingsProvider.toggleDarkMode();
+          },
+        ),
       ),
     );
   }
@@ -85,18 +92,22 @@ class SettingsScreen extends StatelessWidget {
       ),
       title: const Text('リアルタイム表示'),
       subtitle: const Text('経過時間を毎秒更新します'),
-      trailing: Switch(
-        value: settingsProvider.isRealtimeEnabled,
-        onChanged: (value) async {
-          await settingsProvider.toggleRealtimeDisplay();
-          
-          // リアルタイム表示の設定に応じてタイマーを制御
-          if (settingsProvider.isRealtimeEnabled) {
-            timerProvider.startTimer();
-          } else {
-            timerProvider.stopTimer();
-          }
-        },
+      trailing: Semantics(
+        toggled: settingsProvider.isRealtimeEnabled,
+        label: 'リアルタイム表示',
+        child: Switch(
+          value: settingsProvider.isRealtimeEnabled,
+          onChanged: (value) async {
+            await settingsProvider.toggleRealtimeDisplay();
+            
+            // リアルタイム表示の設定に応じてタイマーを制御
+            if (settingsProvider.isRealtimeEnabled) {
+              timerProvider.startTimer();
+            } else {
+              timerProvider.stopTimer();
+            }
+          },
+        ),
       ),
     );
   }

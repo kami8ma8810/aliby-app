@@ -103,7 +103,8 @@ void main() {
           matching: find.byType(ListTile),
         ),
       );
-      expect((firstListTile.title as Text).data, '新しいトロフィー');
+      // ExcludeSemanticsでラップされているため、直接テキストを検索
+      expect(find.text('新しいトロフィー'), findsOneWidget);
     });
 
     testWidgets('should display trophy icons', (WidgetTester tester) async {

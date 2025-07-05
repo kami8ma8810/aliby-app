@@ -5,6 +5,7 @@ import 'package:aliby/screens/onboarding_screen.dart';
 import 'package:aliby/providers/user_provider.dart';
 import 'package:aliby/providers/timer_provider.dart';
 import 'package:aliby/providers/trophy_provider.dart';
+import 'package:aliby/providers/settings_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -12,6 +13,7 @@ void main() {
     late UserProvider userProvider;
     late TimerProvider timerProvider;
     late TrophyProvider trophyProvider;
+    late SettingsProvider settingsProvider;
 
     setUp(() {
       // SharedPreferencesのモックを初期化
@@ -19,6 +21,7 @@ void main() {
       userProvider = UserProvider();
       timerProvider = TimerProvider();
       trophyProvider = TrophyProvider();
+      settingsProvider = SettingsProvider();
     });
 
     tearDown(() {
@@ -40,6 +43,7 @@ void main() {
             ChangeNotifierProvider<UserProvider>.value(value: userProvider),
             ChangeNotifierProvider<TimerProvider>.value(value: timerProvider),
             ChangeNotifierProvider<TrophyProvider>.value(value: trophyProvider),
+            ChangeNotifierProvider<SettingsProvider>.value(value: settingsProvider),
           ],
           child: const OnboardingScreen(),
         ),

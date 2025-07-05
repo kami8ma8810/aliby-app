@@ -91,10 +91,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               // タイトル
-              Text(
-                'ようこそ',
-                style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                  fontWeight: FontWeight.bold,
+              Semantics(
+                header: true,
+                child: Text(
+                  'ようこそ',
+                  style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               const SizedBox(height: 16),
@@ -108,14 +111,18 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
               // 日付選択ボタンまたは選択された日付
               if (_selectedDate == null)
-                ElevatedButton.icon(
-                  onPressed: () => _selectDate(context),
-                  icon: const Icon(Icons.calendar_today),
-                  label: const Text('日付を選択'),
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 32,
-                      vertical: 16,
+                Semantics(
+                  button: true,
+                  label: '生年月日を選択するボタン',
+                  child: ElevatedButton.icon(
+                    onPressed: () => _selectDate(context),
+                    icon: const Icon(Icons.calendar_today),
+                    label: const Text('日付を選択'),
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 32,
+                        vertical: 16,
+                      ),
                     ),
                   ),
                 )
@@ -136,10 +143,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             style: Theme.of(context).textTheme.bodySmall,
                           ),
                           const SizedBox(height: 8),
-                          Text(
-                            // 日付のフォーマット
-                            '${_selectedDate!.year}年${_selectedDate!.month}月${_selectedDate!.day}日',
-                            style: Theme.of(context).textTheme.headlineSmall,
+                          Semantics(
+                            label: '選択された生年月日: ${_selectedDate!.year}年${_selectedDate!.month}月${_selectedDate!.day}日',
+                            child: Text(
+                              // 日付のフォーマット
+                              '${_selectedDate!.year}年${_selectedDate!.month}月${_selectedDate!.day}日',
+                              style: Theme.of(context).textTheme.headlineSmall,
+                            ),
                           ),
                         ],
                       ),
@@ -158,17 +168,21 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
               // 開始ボタン（日付が選択されている場合のみ表示）
               if (_selectedDate != null)
-                FilledButton(
-                  onPressed: _onStartPressed,
-                  style: FilledButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 48,
-                      vertical: 16,
+                Semantics(
+                  button: true,
+                  label: 'アプリを開始する',
+                  child: FilledButton(
+                    onPressed: _onStartPressed,
+                    style: FilledButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 48,
+                        vertical: 16,
+                      ),
                     ),
-                  ),
-                  child: const Text(
-                    '開始',
-                    style: TextStyle(fontSize: 18),
+                    child: const Text(
+                      '開始',
+                      style: TextStyle(fontSize: 18),
+                    ),
                   ),
                 ),
             ],

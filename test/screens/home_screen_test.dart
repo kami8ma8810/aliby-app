@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:aliby/screens/home_screen.dart';
 import 'package:aliby/providers/user_provider.dart';
 import 'package:aliby/providers/timer_provider.dart';
+import 'package:aliby/providers/settings_provider.dart';
 import 'package:aliby/models/user_data.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -11,12 +12,14 @@ void main() {
   group('HomeScreen', () {
     late UserProvider userProvider;
     late TimerProvider timerProvider;
+    late SettingsProvider settingsProvider;
 
     setUp(() {
       // SharedPreferencesのモックを初期化
       SharedPreferences.setMockInitialValues({});
       userProvider = UserProvider();
       timerProvider = TimerProvider();
+      settingsProvider = SettingsProvider();
     });
 
     tearDown(() {
@@ -30,6 +33,7 @@ void main() {
           providers: [
             ChangeNotifierProvider<UserProvider>.value(value: userProvider),
             ChangeNotifierProvider<TimerProvider>.value(value: timerProvider),
+            ChangeNotifierProvider<SettingsProvider>.value(value: settingsProvider),
           ],
           child: const HomeScreen(),
         ),

@@ -67,44 +67,53 @@ class TrophyHistoryScreen extends StatelessWidget {
 
   /// 個別のトロフィーカード
   Widget _buildTrophyCard(BuildContext context, Trophy trophy) {
-    return Card(
-      margin: const EdgeInsets.only(bottom: 12),
-      child: ListTile(
-        leading: Container(
-          width: 48,
-          height: 48,
-          decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.primaryContainer,
-            shape: BoxShape.circle,
-          ),
-          child: Center(
-            child: Text(
-              trophy.icon,
-              style: const TextStyle(fontSize: 24),
+    return Semantics(
+      label: '${trophy.name}. ${trophy.description}. ${_formatDate(trophy.acquiredAt)}に獲得',
+      child: Card(
+        margin: const EdgeInsets.only(bottom: 12),
+        child: ListTile(
+          leading: Container(
+            width: 48,
+            height: 48,
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.primaryContainer,
+              shape: BoxShape.circle,
             ),
-          ),
-        ),
-        title: Text(
-          trophy.name,
-          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        subtitle: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const SizedBox(height: 4),
-            Text(trophy.description),
-            const SizedBox(height: 4),
-            Text(
-              _formatDate(trophy.acquiredAt),
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: Theme.of(context).colorScheme.onSurfaceVariant,
+            child: Center(
+              child: ExcludeSemantics(
+                child: Text(
+                  trophy.icon,
+                  style: const TextStyle(fontSize: 24),
+                ),
               ),
             ),
-          ],
+          ),
+          title: ExcludeSemantics(
+            child: Text(
+              trophy.name,
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          subtitle: ExcludeSemantics(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const SizedBox(height: 4),
+                Text(trophy.description),
+                const SizedBox(height: 4),
+                Text(
+                  _formatDate(trophy.acquiredAt),
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          isThreeLine: true,
         ),
-        isThreeLine: true,
       ),
     );
   }

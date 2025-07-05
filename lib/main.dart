@@ -6,12 +6,17 @@ import 'providers/trophy_provider.dart';
 import 'providers/settings_provider.dart';
 import 'screens/onboarding_screen.dart';
 import 'screens/home_screen.dart';
+import 'utils/performance_utils.dart';
 
 /// アプリのエントリーポイント
 /// 
 /// runAppについて：
 /// https://api.flutter.dev/flutter/widgets/runApp.html
 void main() {
+  // パフォーマンス最適化の初期化
+  WidgetsFlutterBinding.ensureInitialized();
+  PerformanceUtils.optimizeImageCache();
+  
   runApp(const AlibyApp());
 }
 

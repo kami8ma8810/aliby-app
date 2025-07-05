@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/user_provider.dart';
 import '../providers/timer_provider.dart';
+import '../providers/settings_provider.dart';
+import '../utils/performance_utils.dart';
 import 'trophy_history_screen.dart';
 import 'settings_screen.dart';
 
@@ -17,8 +19,12 @@ class HomeScreen extends StatelessWidget {
     // https://pub.dev/documentation/provider/latest/provider/WatchContext/watch.html
     // 値の変更を監視し、変更があればウィジェットを再ビルドする
     final userProvider = context.watch<UserProvider>();
-    // TimerProviderを監視してリアルタイム更新を受け取る
-    context.watch<TimerProvider>();
+    final settingsProvider = context.watch<SettingsProvider>();
+    
+    // リアルタイム表示が有効な場合のみTimerProviderを監視
+    if (settingsProvider.isRealtimeEnabled) {
+      context.watch<TimerProvider>();
+    }
     
     // ユーザーデータがない場合は何も表示しない（通常はOnboardingScreenに遷移）
     if (!userProvider.hasUserData) {
@@ -97,26 +103,35 @@ class HomeScreen extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         // 日数の大きな表示
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.baseline,
-          textBaseline: TextBaseline.alphabetic,
-          children: [
-            Text(
-              days.toString(),
-              style: Theme.of(context).textTheme.displayLarge?.copyWith(
-                fontWeight: FontWeight.bold,
-                fontSize: isSmallScreen ? 72 : 96,
+        Semantics(
+          label: '$days日経過',
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.baseline,
+            textBaseline: TextBaseline.alphabetic,
+            children: [
+              ExcludeSemantics(
+                child: Text(
+                  days.toString(),
+                  style: PerformanceUtils.getOptimizedTextStyle(
+                    Theme.of(context).textTheme.displayLarge?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      fontSize: isSmallScreen ? 72 : 96,
+                    ) ?? const TextStyle(),
+                  ),
+                ),
               ),
-            ),
-            const SizedBox(width: 8),
-            Text(
-              '日',
-              style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                fontSize: isSmallScreen ? 28 : null,
+              const SizedBox(width: 8),
+              ExcludeSemantics(
+                child: Text(
+                  '日',
+                  style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                    fontSize: isSmallScreen ? 28 : null,
+                  ),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
         const SizedBox(height: 24),
         
@@ -141,26 +156,35 @@ class HomeScreen extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     final horizontalPadding = screenWidth < 360 ? 8.0 : 16.0;
     
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 8),
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.surfaceContainerHighest,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      child: Column(
-        children: [
-          Text(
-            value.toString().padLeft(2, '0'),
-            style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-              fontWeight: FontWeight.bold,
-              fontSize: screenWidth < 360 ? 20 : null,
+    return Semantics(
+      label: '$value$unit',
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: horizontalPadding, vertical: 8),
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.surfaceContainerHighest,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Column(
+          children: [
+            ExcludeSemantics(
+              child: Text(
+                value.toString().padLeft(2, '0'),
+                style: PerformanceUtils.getOptimizedTextStyle(
+                  Theme.of(context).textTheme.headlineMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                    fontSize: screenWidth < 360 ? 20 : null,
+                  ) ?? const TextStyle(),
+                ),
+              ),
             ),
-          ),
-          Text(
-            unit,
-            style: Theme.of(context).textTheme.bodySmall,
-          ),
-        ],
+            ExcludeSemantics(
+              child: Text(
+                unit,
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -186,12 +210,15 @@ class HomeScreen extends StatelessWidget {
               const Icon(Icons.emoji_events, size: 32),
               const SizedBox(width: 8),
               Flexible(
-                child: Text(
-                  '100日記念！おめでとうございます！',
-                  style: MediaQuery.of(context).size.width < 360
-                      ? Theme.of(context).textTheme.bodySmall
-                      : null,
-                  overflow: TextOverflow.ellipsis,
+                child: Semantics(
+                  liveRegion: true,
+                  child: Text(
+                    '100日記念！おめでとうございます！',
+                    style: MediaQuery.of(context).size.width < 360
+                        ? Theme.of(context).textTheme.bodySmall
+                        : null,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ),
             ],
@@ -209,31 +236,39 @@ class HomeScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           // 履歴ボタン
-          IconButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const TrophyHistoryScreen(),
-                ),
-              );
-            },
-            icon: const Icon(Icons.history),
-            iconSize: 32,
-            tooltip: 'トロフィー履歴',
+          Semantics(
+            label: 'トロフィー履歴',
+            button: true,
+            child: IconButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const TrophyHistoryScreen(),
+                  ),
+                );
+              },
+              icon: const Icon(Icons.history),
+              iconSize: 32,
+              tooltip: 'トロフィー履歴',
+            ),
           ),
           
           // 設定ボタン
-          IconButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const SettingsScreen(),
-                ),
-              );
-            },
-            icon: const Icon(Icons.settings),
-            iconSize: 32,
-            tooltip: '設定',
+          Semantics(
+            label: '設定',
+            button: true,
+            child: IconButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => const SettingsScreen(),
+                  ),
+                );
+              },
+              icon: const Icon(Icons.settings),
+              iconSize: 32,
+              tooltip: '設定',
+            ),
           ),
         ],
       ),
