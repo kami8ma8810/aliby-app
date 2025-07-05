@@ -11,7 +11,9 @@
       "Bash(git commit:*)",
       "Bash(mv:*)",
       "Bash(true)",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(flutter build:*)",
+      "Bash(python3:*)"
     ],
     "deny": []
   }
