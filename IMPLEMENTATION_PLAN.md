@@ -41,15 +41,11 @@
 - [x] Trophyモデルのテスト作成と実装
   - [x] テスト作成
   - [x] モデル実装
-- [ ] Provider状態管理の基盤設定
-  - [ ] UserProviderのテスト作成
-  - [ ] UserProvider実装
-- [ ] 経過時間計算ロジックの実装
-  - [ ] DateUtilsのテスト作成
-  - [ ] DateUtils実装
-- [ ] リアルタイム表示機能の実装
-  - [ ] TimerProviderのテスト作成
-  - [ ] TimerProvider実装
+- [x] Provider状態管理の基盤設定
+  - [x] UserProviderのテスト作成
+  - [x] UserProvider実装
+  - [x] TimerProviderのテスト作成
+  - [x] TimerProvider実装
 
 ### Phase 3: UI実装 (4-5日目)
 - [ ] HomeScreenの実装
@@ -149,25 +145,26 @@ aliby-app/
 
 ## 📈 実装進捗サマリー
 
-### 全体進捗: ██████░░░░░░░░░░░░░░ 30%
+### 全体進捗: ████████████░░░░░░░░ 60%
 
 | フェーズ | 進捗 | 詳細 |
 |---------|------|------|
 | Phase 1: 基盤構築 | ████████████████████ 100% | ✅ 完了 |
-| Phase 2: コア機能実装 | ████████░░░░░░░░░░░░ 40% | 🔄 進行中 |
-| Phase 3: UI実装 | ░░░░░░░░░░░░░░░░░░░░ 0% | ⏳ 未着手 |
+| Phase 2: コア機能実装 | ████████████████████ 100% | ✅ 完了 |
+| Phase 3: UI実装 | ░░░░░░░░░░░░░░░░░░░░ 0% | 🎯 次の作業 |
 | Phase 4: トロフィー機能 | ░░░░░░░░░░░░░░░░░░░░ 0% | ⏳ 未着手 |
 | Phase 5: 仕上げ | ░░░░░░░░░░░░░░░░░░░░ 0% | ⏳ 未着手 |
 
 ### 実装済み機能
 - ✅ **モデル層**: UserData, Trophy, TrophyCondition, TrophyConfig
 - ✅ **サービス層**: StorageService
+- ✅ **Provider層**: UserProvider, TimerProvider
 - ✅ **ドキュメント**: README（アーキテクチャ図含む）、実装計画書
 
 ### 次の実装予定
-- 🎯 UserProviderの実装（TDD）
-- 🎯 TimerProviderの実装（TDD）
-- 🎯 基本的な画面実装の開始
+- 🎯 OnboardingScreen（初回起動時の生年月日入力画面）
+- 🎯 HomeScreen（メイン画面）の実装
+- 🎯 ナビゲーション設定
 
 ## 🔄 更新履歴
 
