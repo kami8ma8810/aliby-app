@@ -53,16 +53,16 @@
   - [x] 時間・分・秒の表示
   - [x] ナビゲーションボタン
   - [x] レスポンシブ対応（小画面対応）
-- [ ] TrophyHistoryScreenの実装
+- [x] TrophyHistoryScreenの実装
 - [ ] SettingsScreenの実装
   - [ ] リアルタイム表示ON/OFF
   - [ ] テーマ切り替え（ダーク/ライト）
 
 ### Phase 4: トロフィー機能 (6日目)
-- [ ] トロフィー定義ファイル(JSON)の作成
-- [ ] トロフィー条件判定ロジック
-- [ ] トロフィー履歴の保存機能
-- [ ] トロフィー表示UI
+- [x] トロフィー定義ファイル(JSON)の作成
+- [x] トロフィー条件判定ロジック
+- [x] トロフィー履歴の保存機能
+- [x] トロフィー表示UI
 
 ### Phase 5: 仕上げ (7日目)
 - [ ] アクセシビリティ対応
@@ -120,6 +120,7 @@ aliby-app/
 - ✅ main.dartのアプリ全体構造を実装
 - ✅ HomeScreenの実装完了（レスポンシブ対応含む）
 - ✅ READMEを簡潔にし、技術文書を別ファイルに整理
+- ✅ TrophyProviderとTrophyHistoryScreenの実装完了
 
 ## 🎯 MVP機能チェックリスト
 
@@ -150,27 +151,28 @@ aliby-app/
 
 ## 📈 実装進捗サマリー
 
-### 全体進捗: ██████████████░░░░░░ 70%
+### 全体進捗: ████████████████░░░░ 80%
 
 | フェーズ | 進捗 | 詳細 |
 |---------|------|------|
 | Phase 1: 基盤構築 | ████████████████████ 100% | ✅ 完了 |
 | Phase 2: コア機能実装 | ████████████████████ 100% | ✅ 完了 |
-| Phase 3: UI実装 | ████████░░░░░░░░░░░░ 40% | 🔄 進行中 |
-| Phase 4: トロフィー機能 | ░░░░░░░░░░░░░░░░░░░░ 0% | ⏳ 未着手 |
+| Phase 3: UI実装 | █████████████░░░░░░░ 65% | 🔄 進行中 |
+| Phase 4: トロフィー機能 | ████████████████████ 100% | ✅ 完了 |
 | Phase 5: 仕上げ | ░░░░░░░░░░░░░░░░░░░░ 0% | ⏳ 未着手 |
 
 ### 実装済み機能
 - ✅ **モデル層**: UserData, Trophy, TrophyCondition, TrophyConfig
 - ✅ **サービス層**: StorageService
-- ✅ **Provider層**: UserProvider, TimerProvider
-- ✅ **画面**: OnboardingScreen, HomeScreen
+- ✅ **Provider層**: UserProvider, TimerProvider, TrophyProvider
+- ✅ **画面**: OnboardingScreen, HomeScreen, TrophyHistoryScreen
+- ✅ **トロフィー機能**: 条件判定、履歴保存、表示
 - ✅ **ドキュメント**: README, ARCHITECTURE.md, DEVELOPMENT.md, 実装計画書
 
 ### 次の実装予定
-- 🎯 TrophyHistoryScreen（トロフィー履歴画面）の実装
 - 🎯 SettingsScreen（設定画面）の実装
-- 🎯 トロフィー判定ロジックの実装
+- 🎯 アクセシビリティ対応
+- 🎯 パフォーマンス最適化
 
 ## 🔄 更新履歴
 

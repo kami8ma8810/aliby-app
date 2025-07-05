@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import '../providers/user_provider.dart';
 import '../providers/timer_provider.dart';
 import 'trophy_history_screen.dart';
+import 'settings_screen.dart';
 
 /// アプリのメイン画面
 /// 経過時間をリアルタイムで表示し、トロフィー情報も表示する
@@ -224,7 +225,11 @@ class HomeScreen extends StatelessWidget {
           // 設定ボタン
           IconButton(
             onPressed: () {
-              // TODO: Navigate to SettingsScreen
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const SettingsScreen(),
+                ),
+              );
             },
             icon: const Icon(Icons.settings),
             iconSize: 32,
