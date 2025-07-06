@@ -183,18 +183,32 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   Semantics(
                     header: true,
                     child: Text(
-                      'ようこそ',
+                      'あなたの人生、何日目？',
                       style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                         fontWeight: FontWeight.bold,
                       ),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                   const SizedBox(height: 16),
                   
                   // 説明文
                   Text(
+                    '生まれてからの経過時間をリアルタイムで表示し、\n特別な日にはトロフィーでお祝いするアプリです',
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 24),
+                  
+                  // 生年月日入力の案内
+                  Text(
                     '生年月日を入力してください',
-                    style: Theme.of(context).textTheme.bodyLarge,
+                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w500,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 48),
 

@@ -1,8 +1,8 @@
-# 📱 Aliby
+# 📱 Aliby - あなたの人生、何日目？
 
-生まれてからの経過時間をリアルタイムで表示し、節目をゆるく祝うアプリ
+生まれてからの経過時間をリアルタイムで表示し、特別な日にはトロフィーでお祝いするアプリです
 
-🌐 **[Web版はこちら](https://yourusername.github.io/aliby-app/)**
+🌐 **[Web版はこちら](https://kami8ma8810.github.io/aliby-app/)**
 
 ## 概要
 

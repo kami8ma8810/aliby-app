@@ -1,11 +1,11 @@
 {
-    "name": "Aliby - 生まれてからの時間",
+    "name": "Aliby - あなたの人生、何日目？",
     "short_name": "Aliby",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#FFFFFF",
     "theme_color": "#2196F3",
-    "description": "生まれてからの経過時間をリアルタイムで表示するアプリ",
+    "description": "生まれてからの経過時間をリアルタイムで表示し、特別な日にはトロフィーでお祝いするアプリです",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "categories": ["lifestyle", "utilities"],
