@@ -102,6 +102,16 @@ class HomeScreen extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        // 「生まれてから」テキスト
+        Text(
+          '生まれてから',
+          style: Theme.of(context).textTheme.titleLarge?.copyWith(
+            color: Theme.of(context).colorScheme.onSurfaceVariant,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        const SizedBox(height: 16),
+        
         // 日数の大きな表示
         Semantics(
           label: '$days日経過',

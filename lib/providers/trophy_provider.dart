@@ -114,6 +114,18 @@ class TrophyProvider extends ChangeNotifier {
     }
   }
   
+  /// 全てのトロフィーをクリア
+  Future<void> clearTrophies() async {
+    try {
+      _trophies.clear();
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.remove(_trophiesKey);
+      notifyListeners();
+    } catch (e) {
+      debugPrint('Failed to clear trophies: $e');
+    }
+  }
+  
   /// 年齢を計算
   int _calculateAge(DateTime birthdate, DateTime currentDate) {
     int age = currentDate.year - birthdate.year;

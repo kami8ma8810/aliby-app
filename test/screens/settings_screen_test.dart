@@ -5,6 +5,7 @@ import 'package:aliby/screens/settings_screen.dart';
 import 'package:aliby/providers/settings_provider.dart';
 import 'package:aliby/providers/timer_provider.dart';
 import 'package:aliby/providers/user_provider.dart';
+import 'package:aliby/providers/trophy_provider.dart';
 import 'package:aliby/models/user_data.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -13,6 +14,7 @@ void main() {
     late SettingsProvider settingsProvider;
     late TimerProvider timerProvider;
     late UserProvider userProvider;
+    late TrophyProvider trophyProvider;
 
     setUp(() {
       // SharedPreferencesのモックを初期化
@@ -20,6 +22,7 @@ void main() {
       settingsProvider = SettingsProvider();
       timerProvider = TimerProvider();
       userProvider = UserProvider();
+      trophyProvider = TrophyProvider();
     });
 
     tearDown(() {
@@ -34,6 +37,7 @@ void main() {
             ChangeNotifierProvider<SettingsProvider>.value(value: settingsProvider),
             ChangeNotifierProvider<TimerProvider>.value(value: timerProvider),
             ChangeNotifierProvider<UserProvider>.value(value: userProvider),
+            ChangeNotifierProvider<TrophyProvider>.value(value: trophyProvider),
           ],
           child: const SettingsScreen(),
         ),
@@ -130,7 +134,7 @@ void main() {
       // Assert
       expect(find.text('生年月日'), findsOneWidget);
       expect(find.text('2000年1月1日'), findsOneWidget);
-      expect(find.text('生年月日は初期設定後は変更できません'), findsOneWidget);
+      expect(find.text('変更する場合は下記のデータリセットをご利用ください'), findsOneWidget);
     });
 
     testWidgets('should have proper layout on different screen sizes', (WidgetTester tester) async {

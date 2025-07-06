@@ -132,19 +132,22 @@ class _InitialScreenState extends State<InitialScreen> {
     final userProvider = context.watch<UserProvider>();
     
     if (userProvider.hasUserData) {
-      // リアルタイム表示が有効な場合のみタイマーを開始
-      final settingsProvider = context.read<SettingsProvider>();
-      if (settingsProvider.isRealtimeEnabled) {
-        final timerProvider = context.read<TimerProvider>();
-        timerProvider.startTimer();
-      }
-      
-      // トロフィーをチェック
-      final trophyProvider = context.read<TrophyProvider>();
-      trophyProvider.checkAndAddTrophy(
-        userProvider.userData!.birthdate,
-        DateTime.now(),
-      );
+      // ビルド完了後にタイマー開始とトロフィーチェックを実行
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        // リアルタイム表示が有効な場合のみタイマーを開始
+        final settingsProvider = context.read<SettingsProvider>();
+        if (settingsProvider.isRealtimeEnabled) {
+          final timerProvider = context.read<TimerProvider>();
+          timerProvider.startTimer();
+        }
+        
+        // トロフィーをチェック
+        final trophyProvider = context.read<TrophyProvider>();
+        trophyProvider.checkAndAddTrophy(
+          userProvider.userData!.birthdate,
+          DateTime.now(),
+        );
+      });
       
       return const HomeScreen();
     } else {
