@@ -68,10 +68,19 @@ class AlibyApp extends StatelessWidget {
             theme: ThemeData(
               // Material 3（Material You）デザインを使用
               useMaterial3: true,
-              // シードカラーから自動的にカラースキームを生成
+              // エメラルドグリーンをベースとしたカラースキーム
               colorScheme: ColorScheme.fromSeed(
-                seedColor: Colors.blue,
+                seedColor: const Color(0xFF10B981), // エメラルドグリーン
                 brightness: Brightness.light,
+              ),
+              // 追加のカラー設定
+              primaryColor: const Color(0xFF10B981),
+              // カードや表面の色も調整
+              cardTheme: CardTheme(
+                elevation: 2,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
               ),
             ),
             
@@ -79,8 +88,17 @@ class AlibyApp extends StatelessWidget {
             darkTheme: ThemeData(
               useMaterial3: true,
               colorScheme: ColorScheme.fromSeed(
-                seedColor: Colors.blue,
+                seedColor: const Color(0xFF10B981), // エメラルドグリーン
                 brightness: Brightness.dark,
+              ),
+              // ダークテーマでも生命感のある緑を維持
+              primaryColor: const Color(0xFF10B981),
+              // カードや表面の色も調整
+              cardTheme: CardTheme(
+                elevation: 2,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
               ),
             ),
             
