@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'providers/user_provider.dart';
 import 'providers/timer_provider.dart';
 import 'providers/trophy_provider.dart';
 import 'providers/settings_provider.dart';
+import 'providers/locale_provider.dart';
 import 'screens/onboarding_screen.dart';
 import 'screens/home_screen.dart';
 import 'utils/performance_utils.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 /// アプリのエントリーポイント
 /// 
@@ -40,11 +43,26 @@ class AlibyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => TrophyProvider()),
         // SettingsProviderを提供
         ChangeNotifierProvider(create: (_) => SettingsProvider()),
+        // LocaleProviderを提供
+        ChangeNotifierProvider(create: (_) => LocaleProvider()),
       ],
-      child: Consumer<SettingsProvider>(
-        builder: (context, settingsProvider, child) {
+      child: Consumer2<SettingsProvider, LocaleProvider>(
+        builder: (context, settingsProvider, localeProvider, child) {
           return MaterialApp(
             title: 'Aliby',
+            
+            // 国際化設定
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: const [
+              Locale('ja', 'JP'),
+              Locale('en', 'US'),
+            ],
+            locale: localeProvider.locale,
             
             // テーマ設定
             theme: ThemeData(
@@ -103,9 +121,11 @@ class _InitialScreenState extends State<InitialScreen> {
   Future<void> _checkUserData() async {
     final userProvider = context.read<UserProvider>();
     final settingsProvider = context.read<SettingsProvider>();
+    final localeProvider = context.read<LocaleProvider>();
     
     // 設定を初期化
     await settingsProvider.initialize();
+    await localeProvider.initialize();
     
     // ユーザーデータを読み込み
     await userProvider.loadUserData();

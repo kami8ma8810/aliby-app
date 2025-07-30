@@ -1,0 +1,72 @@
+{
+  "appTitle": "Aliby - What day is your life?",
+  "appDescription": "An app that displays the elapsed time since birth in real time and celebrates special days with trophies",
+  "welcome": "What day is your life?",
+  "welcomeDescription": "An app that displays the elapsed time since birth in real time and celebrates special days with trophies",
+  "enterBirthdate": "Please enter your birthdate",
+  "selectDate": "Select Date",
+  "changeDate": "Change Date",
+  "start": "Start",
+  "confirmSettings": "Confirm Settings",
+  "settingsContent": "The following settings will be applied:",
+  "birthdate": "Birthdate",
+  "birthdateNote": "To change your birthdate, data reset is required from the settings screen",
+  "modify": "Modify",
+  "confirmAndStart": "Apply these settings",
+  "bornSince": "Since birth",
+  "days": "days",
+  "hours": "hours",
+  "minutes": "minutes",
+  "seconds": "seconds",
+  "settings": "Settings",
+  "displaySettings": "Display Settings",
+  "darkMode": "Dark Mode",
+  "darkModeOn": "Using dark theme",
+  "darkModeOff": "Using light theme",
+  "realtimeDisplay": "Real-time Display",
+  "realtimeDescription": "Updates elapsed time every second",
+  "userInfo": "User Information",
+  "resetBirthdate": "Reset Birthdate",
+  "appInfo": "App Information",
+  "version": "Version",
+  "license": "License",
+  "language": "Language",
+  "japanese": "Japanese",
+  "english": "English",
+  "changeLanguageNote": "To change birthdate, please use data reset below",
+  "dataReset": "Data Reset",
+  "resetWarning": "Data Reset",
+  "resetContent": "The following data will be completely deleted:",
+  "resetBirthdateSetting": "• Birthdate setting",
+  "resetTrophies": "• Earned trophies",
+  "resetConfirmation": "This operation cannot be undone.\\nAre you sure you want to reset?",
+  "cancel": "Cancel",
+  "reset": "Reset",
+  "resetComplete": "Data has been reset",
+  "trophies": "Trophies",
+  "noTrophies": "No trophies yet",
+  "daysMilestone": "{days} days milestone",
+  "@daysMilestone": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "birthdayTrophy": "{age}th birthday",
+  "@birthdayTrophy": {
+    "placeholders": {
+      "age": {
+        "type": "int"
+      }
+    }
+  },
+  "repdigitDays": "{days} days achieved",
+  "@repdigitDays": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  }
+}

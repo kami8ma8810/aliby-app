@@ -1,0 +1,72 @@
+{
+  "appTitle": "Aliby - あなたの人生、何日目？",
+  "appDescription": "生まれてからの経過時間をリアルタイムで表示し、特別な日にはトロフィーでお祝いするアプリです",
+  "welcome": "あなたの人生、何日目？",
+  "welcomeDescription": "生まれてからの経過時間をリアルタイムで表示し、特別な日にはトロフィーでお祝いするアプリです",
+  "enterBirthdate": "生年月日を入力してください",
+  "selectDate": "日付を選択",
+  "changeDate": "日付を変更",
+  "start": "開始",
+  "confirmSettings": "設定内容の確認",
+  "settingsContent": "以下の内容で設定します：",
+  "birthdate": "生年月日",
+  "birthdateNote": "生年月日を変更する場合は設定画面からデータリセットが必要です",
+  "modify": "修正する",
+  "confirmAndStart": "この内容で設定",
+  "bornSince": "生まれてから",
+  "days": "日",
+  "hours": "時間",
+  "minutes": "分",
+  "seconds": "秒",
+  "settings": "設定",
+  "displaySettings": "表示設定",
+  "darkMode": "ダークモード",
+  "darkModeOn": "ダークテーマを使用中",
+  "darkModeOff": "ライトテーマを使用中",
+  "realtimeDisplay": "リアルタイム表示",
+  "realtimeDescription": "経過時間を毎秒更新します",
+  "userInfo": "ユーザー情報",
+  "resetBirthdate": "生年月日をリセット",
+  "appInfo": "アプリ情報",
+  "version": "バージョン",
+  "license": "ライセンス",
+  "language": "言語",
+  "japanese": "日本語",
+  "english": "English",
+  "changeLanguageNote": "変更する場合は下記のデータリセットをご利用ください",
+  "dataReset": "データをリセット",
+  "resetWarning": "データリセット",
+  "resetContent": "以下のデータが完全に削除されます：",
+  "resetBirthdateSetting": "• 生年月日設定",
+  "resetTrophies": "• 獲得したトロフィー",
+  "resetConfirmation": "この操作は取り消すことができません。\\n本当にリセットしますか？",
+  "cancel": "キャンセル",
+  "reset": "リセットする",
+  "resetComplete": "データをリセットしました",
+  "trophies": "トロフィー",
+  "noTrophies": "まだトロフィーがありません",
+  "daysMilestone": "{days}日記念",
+  "@daysMilestone": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "birthdayTrophy": "{age}歳の誕生日",
+  "@birthdayTrophy": {
+    "placeholders": {
+      "age": {
+        "type": "int"
+      }
+    }
+  },
+  "repdigitDays": "{days}日達成",
+  "@repdigitDays": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  }
+}
