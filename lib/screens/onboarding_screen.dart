@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../providers/user_provider.dart';
+import '../providers/trophy_provider.dart';
 import '../models/user_data.dart';
 import 'home_screen.dart';
 
@@ -145,10 +146,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
     // UserProviderを取得
     final userProvider = context.read<UserProvider>();
+    final trophyProvider = context.read<TrophyProvider>();
     
     // ユーザーデータを作成して保存
     final userData = UserData(birthdate: _selectedDate!);
     await userProvider.setUserData(userData);
+
+    // 過去のトロフィーをチェック
+    await trophyProvider.checkPastTrophies(_selectedDate!, DateTime.now());
 
     // HomeScreenへ遷移
     if (mounted) {
@@ -201,11 +206,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         if (isMobile) {
                           // モバイルでは読点で折り返し
                           return Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
                                 'あなたの人生、',
                                 style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                                   fontWeight: FontWeight.bold,
+                                  height: 1.2,
                                 ),
                                 textAlign: TextAlign.center,
                               ),
@@ -213,6 +220,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                 '何日目？',
                                 style: Theme.of(context).textTheme.headlineLarge?.copyWith(
                                   fontWeight: FontWeight.bold,
+                                  height: 1.2,
                                 ),
                                 textAlign: TextAlign.center,
                               ),

@@ -94,17 +94,20 @@ class HomeScreen extends StatelessWidget {
               if (isMobile) {
                 // モバイルでは読点で折り返し
                 return Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
                       'あなたの人生、',
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.w600,
+                        height: 1.2,
                       ),
                     ),
                     Text(
                       '何日目？',
                       style: Theme.of(context).textTheme.titleLarge?.copyWith(
                         fontWeight: FontWeight.w600,
+                        height: 1.2,
                       ),
                     ),
                   ],

@@ -30,44 +30,47 @@ class TrophyProvider extends ChangeNotifier {
   /// currentDate: 現在の日時（テスト用にパラメータ化）
   Future<void> checkAndAddTrophy(DateTime birthdate, DateTime currentDate) async {
     final daysSinceBirth = currentDate.difference(birthdate).inDays;
-    final age = _calculateAge(birthdate, currentDate);
     
-    // 100日ごとの記念日チェック
-    if (daysSinceBirth > 0 && daysSinceBirth % 100 == 0) {
-      final trophy = Trophy(
-        id: 'milestone_$daysSinceBirth',
-        name: '$daysSinceBirth日記念',
-        description: '生まれてから$daysSinceBirth日が経過しました！',
-        acquiredAt: currentDate,
-        icon: '🎉',
-      );
-      await addTrophy(trophy);
-    }
-    
-    // 誕生日チェック
-    if (birthdate.month == currentDate.month && 
-        birthdate.day == currentDate.day && 
-        age > 0) {
-      final trophy = Trophy(
-        id: 'birthday_$age',
-        name: '$age歳の誕生日',
-        description: '$age歳のお誕生日おめでとうございます！',
-        acquiredAt: currentDate,
-        icon: '🎂',
-      );
-      await addTrophy(trophy);
-    }
-    
-    // ゾロ目の日数チェック
-    if (_isRepdigit(daysSinceBirth) && daysSinceBirth > 0) {
-      final trophy = Trophy(
-        id: 'repdigit_$daysSinceBirth',
-        name: '$daysSinceBirth日達成',
-        description: 'ゾロ目の$daysSinceBirth日を達成しました！',
-        acquiredAt: currentDate,
-        icon: '🎯',
-      );
-      await addTrophy(trophy);
+    // 特別な記念日チェック
+    if (daysSinceBirth > 0) {
+      bool isMilestone = false;
+      String trophyName = '';
+      String trophyIcon = '🎉';
+      
+      if (daysSinceBirth == 100) {
+        isMilestone = true;
+        trophyName = '100日記念';
+        trophyIcon = '🌱';
+      } else if (daysSinceBirth == 500) {
+        isMilestone = true;
+        trophyName = '500日記念';
+        trophyIcon = '🌿';
+      } else if (daysSinceBirth == 1000) {
+        isMilestone = true;
+        trophyName = '1000日記念';
+        trophyIcon = '🌳';
+      } else if (daysSinceBirth >= 2000 && daysSinceBirth < 10000 && daysSinceBirth % 1000 == 0) {
+        // 2000日〜9000日は1000日ごと
+        isMilestone = true;
+        trophyName = '$daysSinceBirth日記念';
+        trophyIcon = '🎊';
+      } else if (daysSinceBirth >= 10000 && daysSinceBirth % 10000 == 0) {
+        // 10000日以降は10000日ごと
+        isMilestone = true;
+        trophyName = '$daysSinceBirth日記念';
+        trophyIcon = '🏆';
+      }
+      
+      if (isMilestone) {
+        final trophy = Trophy(
+          id: 'milestone_$daysSinceBirth',
+          name: trophyName,
+          description: '生まれてから$daysSinceBirth日が経過しました！',
+          acquiredAt: currentDate,
+          icon: trophyIcon,
+        );
+        await addTrophy(trophy);
+      }
     }
   }
   
@@ -126,20 +129,62 @@ class TrophyProvider extends ChangeNotifier {
     }
   }
   
-  /// 年齢を計算
-  int _calculateAge(DateTime birthdate, DateTime currentDate) {
-    int age = currentDate.year - birthdate.year;
-    if (currentDate.month < birthdate.month ||
-        (currentDate.month == birthdate.month && currentDate.day < birthdate.day)) {
-      age--;
-    }
-    return age;
-  }
   
-  /// ゾロ目かどうかチェック
-  bool _isRepdigit(int number) {
-    if (number <= 0) return false;
-    final str = number.toString();
-    return str.length > 1 && str.split('').every((digit) => digit == str[0]);
+  /// 初回登録時に過去のトロフィーをチェック
+  /// birthdate: 生年月日
+  /// currentDate: 現在の日時
+  Future<void> checkPastTrophies(DateTime birthdate, DateTime currentDate) async {
+    final daysSinceBirth = currentDate.difference(birthdate).inDays;
+    
+    // 特別な記念日を遡ってチェック
+    List<int> milestones = [100, 500, 1000];
+    
+    // 2000日〜9000日は1000日ごと
+    for (int days = 2000; days < 10000 && days <= daysSinceBirth; days += 1000) {
+      milestones.add(days);
+    }
+    
+    // 10000日以降は10000日ごと
+    for (int days = 10000; days <= daysSinceBirth; days += 10000) {
+      milestones.add(days);
+    }
+    
+    for (int days in milestones) {
+      if (days <= daysSinceBirth) {
+        final trophyDate = birthdate.add(Duration(days: days));
+        String trophyName = '';
+        String trophyIcon = '🎉';
+        
+        if (days == 100) {
+          trophyName = '100日記念';
+          trophyIcon = '🌱';
+        } else if (days == 500) {
+          trophyName = '500日記念';
+          trophyIcon = '🌿';
+        } else if (days == 1000) {
+          trophyName = '1000日記念';
+          trophyIcon = '🌳';
+        } else if (days < 10000) {
+          trophyName = '$days日記念';
+          trophyIcon = '🎊';
+        } else {
+          trophyName = '$days日記念';
+          trophyIcon = '🏆';
+        }
+        
+        final trophy = Trophy(
+          id: 'milestone_$days',
+          name: trophyName,
+          description: '生まれてから$days日が経過しました！',
+          acquiredAt: trophyDate,
+          icon: trophyIcon,
+        );
+        await addTrophy(trophy);
+      }
+    }
+    
+    // 保存後に通知
+    await _saveTrophies();
+    notifyListeners();
   }
 }
