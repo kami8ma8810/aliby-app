@@ -13,7 +13,15 @@
       "Bash(true)",
       "Bash(ls:*)",
       "Bash(flutter build:*)",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "Bash(flutter doctor:*)",
+      "Bash(flutter pub:*)",
+      "Bash(flutter run:*)",
+      "Bash(git push:*)",
+      "Bash(flutter gen-l10n:*)",
+      "Bash(git reset:*)",
+      "Bash(cp:*)",
+      "Bash(git checkout:*)"
     ],
     "deny": []
   }

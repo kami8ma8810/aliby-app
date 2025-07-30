@@ -1,31 +1,5 @@
 {
-  "buildCommand": "flutter build web --release",
+  "buildCommand": "cd $HOME && git clone https://github.com/flutter/flutter.git -b stable && export PATH=\"$PATH:$HOME/flutter/bin\" && cd $VERCEL_PATH_0 && flutter --version && flutter pub get && flutter build web --release",
   "outputDirectory": "build/web",
-  "installCommand": "curl -fsSL https://flutter.dev/get-flutter.sh | bash && export PATH=\"$PATH:$HOME/flutter/bin\" && flutter --version && flutter pub get",
-  "framework": null,
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "SAMEORIGIN"
-        },
-        {
-          "key": "X-XSS-Protection",
-          "value": "1; mode=block"
-        }
-      ]
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
-  ]
+  "framework": null
 }
