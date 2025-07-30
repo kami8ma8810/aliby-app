@@ -179,15 +179,56 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  // アプリ名
+                  Text(
+                    'Aliby',
+                    style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 16),
+                  
                   // タイトル
                   Semantics(
                     header: true,
-                    child: Text(
-                      'あなたの人生、何日目？',
-                      style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.center,
+                    child: LayoutBuilder(
+                      builder: (context, constraints) {
+                        // スマホサイズの判定（幅600px未満）
+                        final isMobile = constraints.maxWidth < 600;
+                        
+                        if (isMobile) {
+                          // モバイルでは読点で折り返し
+                          return Column(
+                            children: [
+                              Text(
+                                'あなたの人生、',
+                                style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                              Text(
+                                '何日目？',
+                                style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          );
+                        } else {
+                          // デスクトップでは1行表示
+                          return Text(
+                            'あなたの人生、何日目？',
+                            style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                              fontWeight: FontWeight.bold,
+                            ),
+                            textAlign: TextAlign.center,
+                          );
+                        }
+                      },
                     ),
                   ),
                   const SizedBox(height: 16),

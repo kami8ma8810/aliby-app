@@ -76,13 +76,53 @@ class HomeScreen extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: Column(
         children: [
+          // アプリ名
           Text(
             'Aliby',
-            style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
               fontWeight: FontWeight.bold,
+              color: Theme.of(context).colorScheme.primary,
             ),
           ),
           const SizedBox(height: 8),
+          
+          // キャッチコピー（レスポンシブ対応）
+          LayoutBuilder(
+            builder: (context, constraints) {
+              final isMobile = constraints.maxWidth < 600;
+              
+              if (isMobile) {
+                // モバイルでは読点で折り返し
+                return Column(
+                  children: [
+                    Text(
+                      'あなたの人生、',
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                    Text(
+                      '何日目？',
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ],
+                );
+              } else {
+                // デスクトップでは1行表示
+                return Text(
+                  'あなたの人生、何日目？',
+                  style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    fontWeight: FontWeight.w600,
+                  ),
+                );
+              }
+            },
+          ),
+          const SizedBox(height: 8),
+          
+          // 生年月日
           Text(
             birthdateText,
             style: Theme.of(context).textTheme.bodyLarge?.copyWith(
